@@ -1,0 +1,45 @@
+<h3>
+    {{_alakartMenu.MenuAd}}
+    <!--<button *ngIf="_isEdit" (click)="sil()">Sil</button>-->
+</h3>
+<hr>
+
+<div style="color:red">
+    <ng-content select="[resim_bolumu]"></ng-content>
+</div>
+
+<div><button *ngIf="_isEdit" class="w3-button" (click)="satirEkle(_alakartMenu)">+Satir Ekle</button>
+
+
+<ul>
+    <li *ngFor="let item of _alakartMenu.AlakartMenuItems;let i=index" (mouseleave)="item.hovering=null" (mouseenter)="item.hovering=i">
+
+        <div class="testsinif" *ngIf="_isEdit; then editMenu else displayMenu"></div>
+
+        <ng-template #editMenu>
+            <div style="display: flex; flex-wrap: wrap; position: relative;padding-bottom: 5px">
+                <input placeholder="Ad" style="display: inline-block;width: 80%;font-weight: bold" type="text" [(ngModel)]="item.YemekAdi"
+                />
+                <input placeholder="Fiyat" style="display: inline-block;width: 20%;text-align: right;padding-left: 20px" type="text" [(ngModel)]="item.Fiyat"
+                />
+                <textarea placeholder="Açıklama" style="display: inline-block;width: 80%" [(ngModel)]='item.Aciklama1' rows="2"></textarea>
+
+                <span title="Sil" (click)='satirSil(_alakartMenu.AlakartMenuItems,item)'  
+                     class="delSpan" *ngIf="item.hovering==i">
+                    <i class="fa fa-times"></i>
+            </span>
+            </div>
+        </ng-template>
+
+        <ng-template #displayMenu>
+            <div>
+                <section style="display: flex;">
+                    <strong style="display: inline-block;width: 100%;text-align: left;">{{item.YemekAdi}}</strong>
+                    <strong class="fiyat" style="display: inline-block;width:40px;text-align: right;font-size:1.2rem">{{item.Fiyat}}</strong>
+                </section>
+                <section *ngIf="item.Aciklama1" placeholder="Açıklama" class="wordwrap" style="padding-left: 20px;padding-right: 40px;text-align: left;font-style: italic;">{{item.Aciklama1}}
+                </section>
+            </div>
+        </ng-template>
+    </li>
+</ul>

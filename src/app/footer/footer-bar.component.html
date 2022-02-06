@@ -1,0 +1,80 @@
+<div class="w3-padding-64 w3-light-grey" id="iletisim">
+    <h3 class="w3-center w3-padding-12 w3-wide">BİZE ULAŞIN</h3>
+
+    <div *ngIf="globalService._userInfo" style="text-align: center">
+        <button class="w3-btn w3-teal" (click)="duzenle()">Düzenle</button>
+        <button class="w3-btn w3-teal" (click)="kaydet()">Kaydet</button>
+    </div>
+
+    <div class="w3-row-padding" style="margin-top:64px">
+        <div class="w3-half">
+            <section *ngIf="!_isEditMode">
+                <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i>{{_firma.Adres}}</p>
+                <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i>{{_firma.Telefon}}</p>
+                <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i>{{_firma.Email}}</p>
+
+
+            </section>
+
+            <section *ngIf="_isEditMode">
+                <p style="display:flex"><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i>
+                    <input class="w3-input w3-border" type="text" [(ngModel)]="_firma.FirmaAd" placeholder="Firma Ad" required>
+                </p>
+                <p style="display:flex"><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i>
+                    <input class="w3-input w3-border" type="text" [(ngModel)]="_firma.Adres" placeholder="Adres" required>
+                </p>
+                <p style="display:flex"><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i>
+                     <input class="w3-input w3-border" type="text" [(ngModel)]="_firma.Telefon" placeholder="Telefon" required>
+                </p>
+                <p style="display:flex"><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> 
+                     <input class="w3-input w3-border" type="text" [(ngModel)]="_firma.Email" placeholder="Email" required>
+                </p>
+
+                <p style="display:flex"><i>X_Koor_</i> 
+                     <input class="w3-input w3-border" type="text" [(ngModel)]="_firma.GpsKonumEnlem" placeholder="Enlem" required>
+                </p>
+
+                <p style="display:flex"><i>Y_Koor_</i> 
+                     <input class="w3-input w3-border" type="text" [(ngModel)]="_firma.GpsKonumBoylam" placeholder="Boylam" required>
+                </p>
+
+
+
+            </section>
+
+
+            <br>
+            <form *ngIf="!_isEditMode" action="/action_page.php" target="_blank">
+                <p>
+                    <input class="w3-input w3-border" type="text"  placeholder="AdSoyad" required name="Name">
+                </p>
+                <p>
+                    <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+                </p>
+                <p>
+                    <input class="w3-input w3-border" type="text" placeholder="Konu" required name="Subject">
+                </p>
+                <p>
+                    <input class="w3-input w3-border" type="text" placeholder="Mesaj" required name="Message">
+                </p>
+                <p>
+                    <button (click)="mesajGonder()" class="w3-btn w3-padding" type="submit">
+                        <i class="fa fa-paper-plane"></i> GÖNDER
+                    </button>
+                </p>
+            </form>
+
+
+
+        </div>
+        <div class="w3-half">
+            <div id="googleMap" class="w3-greyscale-max" style="width:100%;height:510px;"></div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="w3-center w3-black w3-padding-64">
+    <a href="index.html#anasayfa" class="w3-btn w3-padding w3-light-grey w3-hover-grey"><i class="fa fa-arrow-up w3-margin-right"></i>Ana Sayfa</a>
+  
+</footer>

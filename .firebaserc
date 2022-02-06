@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "derinlezzet2"
+  },
+  "targets": {
+    "derinlezzet2": {
+      "hosting": {
+        "ng2": [
+          "derinlezzet2"
+        ]
+      }
+    }
+  }
+}

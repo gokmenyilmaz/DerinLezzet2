@@ -1,0 +1,22 @@
+my-w3carousel .prev,
+my-w3carousel .next {
+    visibility: visible!important;
+}
+
+img{
+    width:100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    max-width: 100% !important;
+    display: block;
+
+}
+
+.w3-col
+{
+    padding-bottom: 10px;
+}
+
+fieldset{
+    height: 100%;
+}

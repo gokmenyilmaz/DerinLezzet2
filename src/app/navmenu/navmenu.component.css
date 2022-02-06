@@ -1,0 +1,28 @@
+a {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#navDemo a
+{
+   justify-content: left !important;
+   padding-left: 10%;
+   line-height: 30px;
+}
+
+.logoImg {
+    width: 110px;
+    display: block;
+    height: auto;
+    padding: 0px;
+}
+
+
+.logoImgSmall {
+    width: 75px;
+    display: block;
+    height: auto;
+    padding: 0px;
+}

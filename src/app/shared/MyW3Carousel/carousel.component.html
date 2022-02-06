@@ -1,0 +1,16 @@
+<div #dataContainer class="inner">
+    <ng-content select="[body]"></ng-content>
+
+</div>
+
+<div class="buttons" *ngIf="buttons=='evet'">
+    <span class="prev w3-display-left" (click)="plusDivs(-1)"><i class="fa fa-chevron-left fa-2x"></i></span>
+    <span class="next w3-display-right" (click)="plusDivs(1)"><i class="fa fa-chevron-right fa-2x"></i></span>
+
+</div>
+
+<div #dotContainer class="carousel-dots">
+    <!--<span data-value="1"></span>
+    <span data-value="2"></span>
+    <span data-value="3"></span>-->
+</div>

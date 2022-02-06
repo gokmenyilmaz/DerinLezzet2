@@ -1,0 +1,46 @@
+<div class="w3-bar  w3-black"
+    style="display: flex;align-content: stretch;opacity: 0.8;flex-wrap: wrap;justify-content: center" id="myNavbar">
+    <span (click)="signInWithGoogle()" style="margin-right: auto" class="w3-bar-item w3-button w3-wide ">
+        <img *ngIf="!globalService._userInfo" class="logoImg w3-hide-medium w3-hide-small"
+            src="./assets/images/logo.png" />
+
+        <img *ngIf="!globalService._userInfo" class="logoImgSmall w3-hide-large" src="./assets/images/logo.png" />
+
+        <div *ngIf="globalService._userInfo" style="display: flex;width: 250px">
+            <img style="width: 50px;height: 50px" src={{globalService.userPhotoURL}} />
+            <label style="width: 50px;padding-left: 10px">{{globalService._userInfo.displayName}}</label>
+        </div>
+    </span>
+
+    <a href="#hakkimizda" class="w3-button w3-hide-small w3-hide-medium">HAKKIMIZDA</a>
+    <a href="#haftalikmenu" class="w3-button w3-hide-small w3-hide-medium"><i class="fa fa-table"></i>&nbsp; HAFTALIK
+        MENU</a>
+    <a href="#alakart" class="w3-button w3-hide-small w3-hide-medium"><i class="fa fa-cutlery"></i>&nbsp; ALAKART</a>
+    <a href="#ekipmanlar" class="w3-button w3-hide-small w3-hide-medium"><i class="fa fa-suitcase"></i>&nbsp;
+        EKİPMANLAR</a>
+    <a href="#gorseller" class="w3-button w3-hide-small w3-hide-medium"><i class="fa fa-picture-o"></i>&nbsp;
+        GÖRSELLER</a>
+    <a href="#iletisim" class="w3-button w3-hide-small w3-hide-medium"><i class="fa fa-envelope"></i>&nbsp; İLETİŞİM</a>
+
+    <a href="javascript:void(0)" style="cursor:pointer" class="w3-button w3-right w3-hide-large"
+        (click)="openSmallMenu()">
+        <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
+    </a>
+
+</div>
+
+
+<div id="navDemo" #smallMenu class="w3-bar-block w3-black w3-hide w3-hide-large w3-top"
+    style="margin-top:46px;text-align:left!important;">
+    <a href="#hakkimizda" (click)="closeSmallMenu()" class="w3-button w3-black  w3-mobil">HAKKIMIZDA</a>
+    <a href="#haftalikmenu" (click)="closeSmallMenu()" class="w3-button w3-black w3-mobil"><i
+            class="fa fa-table"></i>&nbsp; HAFTALIK MENU</a>
+    <a href="#alakart" (click)="closeSmallMenu()" class="w3-button w3-black  w3-mobil"><i
+            class="fa fa-cutlery"></i>&nbsp; ALAKART</a>
+    <a href="#ekipmanlar" (click)="closeSmallMenu()" class="w3-button w3-black  w3-mobil"><i
+            class="fa fa-suitcase"></i>&nbsp; EKİPMANLAR</a>
+    <a href="#gorseller" (click)="closeSmallMenu()" class="w3-button w3-black  w3-mobil"><i
+            class="fa fa-picture-o"></i>&nbsp; GÖRSELLER</a>
+    <a href="#iletisim" (click)="closeSmallMenu()" class="w3-button w3-black w3-mobil"><i
+            class="fa fa-envelope"></i>&nbsp; İLETİŞİM</a>
+</div>

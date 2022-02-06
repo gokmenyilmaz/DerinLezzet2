@@ -1,0 +1,69 @@
+@font-face {
+    font-family: 'tlfont'; /*a name to be used later*/
+    src: url('/./assets/font_tl.woff'); /*URL to font*/
+}
+
+article
+{
+    min-width: 19% !important;
+
+}
+
+fieldset
+{
+    padding-bottom: 35px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0px;
+  
+}
+
+fieldset ul {
+    padding: 0px;
+}
+
+fieldset li {
+    border-bottom: solid thin lightgray;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.yemekfiyat::after,.fiyat::after
+{
+    content: 't';
+    font-family: 'tlfont' !important;
+    font-weight: bold;
+
+}
+
+.secenekler
+{
+    font-size: 11px;
+    text-align: left;
+}
+
+
+.delSpan
+{
+    cursor:pointer;
+    width: 30px;
+    text-align:center;
+    position: absolute;
+    right: -20px;
+    color: red;
+   
+}
+
+.hover-delete
+{
+  color: red;
+  transform: scale(1.3,1.3)
+}
+
+.hover-edit
+{
+  color: green;
+  transform: scale(1.3,1.3)
+}

@@ -1,0 +1,33 @@
+ <div id="gorseller" class="w3-content w3-padding-32 w3-center">
+    <h3 style="font-weight: bold" class="w3-border-bottom w3-border-light-grey w3-padding-12  w3-wide">GÖRSELLER</h3>
+
+    <div style="cursor:pointer;display: flex;flex-wrap: wrap;justify-content: space-around">
+        <article class="w3-col l3 m4 s6" *ngFor="let item of FigureList">
+        <figure class="w3-card-2 w3-round w3-center" >
+            <figcaption>{{item.Baslik}}</figcaption>
+            <img [src]="item.ResimYol" (click)="showModal(item)" />
+
+            <div>{{item.Icerik}}</div>
+        </figure>
+        </article>
+
+    </div>
+
+    <div id="modal01" style="height: 100%;max-height: 100vh;overflow-y: hidden;cursor: pointer"
+         (click)="rightClick($event)" #modal01 class="w3-modal w3-black" style="z-index: 99999999">
+        <span class="w3-closebtn w3-text-white w3-opacity w3-hover-opacity-off w3-xxlarge w3-container w3-display-topright" (click)="closeModal()"
+            title="Resmi Kapat">×</span>
+
+        <div style="height: 100%; " class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+            <img style="max-height: 100%;cursor: pointer" [src]="aktifResimYol" class="w3-image">
+            <p id="caption" class="w3-opacity w3-large">{{aktifResimBaslik}}</p>
+
+            <span class="w3-display-left" (click)="leftClick($event)"><i class="fa fa-chevron-left fa-2x"></i></span>
+            <span class="w3-display-right" (click)="rightClick($event)"><i class="fa fa-chevron-right fa-2x"></i></span>
+
+
+        </div>
+
+    </div>
+
+</div>

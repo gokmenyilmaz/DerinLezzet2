@@ -1,0 +1,198 @@
+<div id="haftalikmenu" class=" w3-content w3-container w3-padding-32 w3-center">
+
+
+   <div id="modal02" (click)="closeModal()" style="height: 100%;max-height: 100vh;overflow-y: hidden;cursor: pointer"
+        #modal02 class="w3-modal w3-black" style="z-index: 99999999">
+       <span class="w3-closebtn w3-text-white w3-opacity w3-hover-opacity-off w3-xxlarge w3-container w3-display-topright" (click)="closeModal()"
+           title="Resmi Kapat">×</span>
+
+       <div style="height: 100%; " class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+           <img style="max-height: 100%;cursor: pointer" [src]="aktifResimYol" class="w3-image">
+           <p>{{aktifResimAciklama}}</p>
+       </div>
+
+   </div>
+
+
+    <header  class="w3-container w3-padding-32 w3-center  w3-wide">
+        <h3 style="font-weight: bold" class="w3-border-bottom w3-border-light-grey w3-padding-12">
+            {{AnaBaslik}}</h3>
+    </header>
+
+    <p *ngIf="!aktifHaftaVerisiVarmi">
+        Bu hafta için herhangi bir menü tanımı yapılmadı.
+    </p>
+
+    <div *ngIf="globalService._userInfo" style="text-align: center">
+        <button class="w3-btn w3-teal" (click)="duzenle()">Düzenle</button>
+        <button class="w3-btn w3-teal" (click)="kaydet()">Kaydet</button>
+    </div>
+    
+    <section id="DisplayHaftalikMenu" *ngIf="!_isEditMode"  style="display: flex; flex-wrap: wrap;justify-content:space-around;align-items:stretch">
+       
+       <div>
+           
+       </div>
+        <ng-container  *ngFor='let menu_gun of YemekMenuGunListe;let i = index'>
+        <fieldset *ngIf="menu_gun.ToplamFiyat!=0" [ngClass]="sutunSitilSinifGetir()" class="w3-display-container w3-col s12  w3-card-2 w3-round  w3-center">
+            <div>
+                <h4 class="w3-black" style="margin:0 -10px">{{menu_gun.GunAd}}</h4>
+                <!-- <h5 class="ng-binding">{{menu_gun.Tarih | date:'yMMMMEEEEd'}}</h5> -->
+                <h5>{{menu_gun.Tarih}}</h5>
+                <h4>{{menu_gun.GunBaslik}}</h4>
+
+                <div style="max-height:120px;width:100%">
+                    <img (click)=resmiBuyut(menu_gun) style="max-width:100%;max-height:120px;cursor:pointer" src={{menu_gun.image}} alt="" />
+                </div>
+  
+            </div>
+            
+
+            <div style="display: flex; flex-grow: wrap;justify-content:space-around;align-items:stretch">
+                <ul class="gunSutun">
+                        <div  style="display: inline-block;width: 100%;text-align: center;font-weight: bold">
+                                MENÜ</div>
+                    <li *ngFor="let x of menu_gun.YemekMenuItems;let i=index">
+                        <div class="yemekMenuItem" style="display: flex;">
+                            <div [class.w3-center]="!menu_gun.FiyatlarGorunsunMu" style="display: inline-block;width: 100%;text-align: left">{{menu_gun.YemekMenuItems[i].YemekAdi}}</div>
+                            <div *ngIf="menu_gun.FiyatlarGorunsunMu" class="yemekfiyat" style="display: inline-block;width: 60px">{{menu_gun.YemekMenuItems[i].Fiyat}}</div>
+                        </div>
+                    </li>
+
+                    <div *ngIf="menu_gun.ToplamFiyatGorunsunMu" class="fiyat" style="padding-bottom:10px;padding-top:20px;" >
+                        Toplam : <strong style="font-size:1.1rem">{{menu_gun.ToplamFiyat}}</strong>
+                    </div>
+                </ul>
+    
+                <ul *ngIf="menu_gun.SalataMenuItems" class="gunSutun" style="margin-left: 15px" >
+                    <div  style="display: inline-block;width: 100%;text-align: center;font-weight: bold">
+                                ZEYTİNYAĞLILAR</div>
+                    <li *ngFor="let x of menu_gun.SalataMenuItems;let i=index">
+                        <div class="yemekMenuItem" style="display: flex;">
+                            <div  style="display: inline-block;width: 100%;text-align: center">
+                                {{menu_gun.SalataMenuItems[i].YemekAdi}}</div>
+                        </div>
+
+                    </li>
+
+                    <div  class="fiyat" style="padding-bottom:10px;padding-top:20px" >
+                        4.Çeşit : <strong style="font-size:1.1rem">{{menu_gun.ToplamFiyatSalata}}</strong>
+                    </div>
+
+                  
+                </ul>
+            </div>
+          
+         
+        </fieldset>
+       </ng-container>
+    </section>
+
+    <section name="EditHaftalikMenu" *ngIf="_isEditMode" >
+        
+        <div  id="sorguPanel">
+                    
+            <div style="display: flex;justify-content:space-around">
+                <input class="w3-input w3-border" type="number" [(ngModel)]="yil" (change)="tarihDegisti()" />
+    
+                <select class="w3-input w3-border" [(ngModel)]="ay_onikili" (change)="tarihDegisti()">
+                    <option *ngFor="let c of aylar" [ngValue]="c.id">{{c.value}}</option>
+                </select>
+    
+                <select class="w3-input w3-border" [(ngModel)]="pazartesiKey" (change)="gunDegisti()">
+                    <option value="-1">Seçiniz (Gun)</option>
+                    <option *ngFor="let g of ay_pazartesiler" [ngValue]="g.id">{{g.value}}</option>
+                </select>
+            </div>
+                          
+        </div>
+        
+        <div  style="display: flex; flex-wrap: wrap;justify-content:space-around;align-items:stretch">
+            <ng-container
+                        *ngFor='let menu_gun of YemekMenuGunListe;let i = index'>
+                <fieldset  class="w3-display-container w3-col l2 m5 s12  w3-card-2 w3-round  w3-center">
+                    <div>
+                        <h4 class="w3-black" style="margin:0 -10px">{{menu_gun.GunAd}}</h4>
+                        <h5>{{menu_gun.Tarih}}</h5>
+                    
+                        <input style="width:100%"  type="text" placeholder="Menü Başlığı" [(ngModel)]="menu_gun.GunBaslik" />
+                        
+                        <textarea rows="3" style="width:100%;font-size:10px"  placeholder="Yemek Resim Açıklama" [(ngModel)]="menu_gun.Aciklama"></textarea>
+                    
+                        <div style="max-height:120px;width:100%">
+                            <img (click)=resmiBuyut(menu_gun) style="max-width:100%;max-height:120px;cursor:pointer" src={{menu_gun.image}} alt="" />
+                        </div>
+        
+                        <div class="secenekler">
+                            <div>
+                                <input style="max-width:100%;margin-top:5px;width:100%;overflow:hidden" placeholder="Resim Seçiniz" type="file" 
+                                accept="image/*" (change)="changeListener($event,menu_gun)">
+                            </div>
+                            <div>
+                                <label><input type="checkbox" [(ngModel)]="menu_gun.FiyatlarGorunsunMu" name="checkbox" value="value">Fiyatlar Görünsün Mü?</label>
+                            </div>
+                            <div>
+                                <label><input type="checkbox" [(ngModel)]="menu_gun.ToplamFiyatGorunsunMu" name="checkbox" value="value">Toplam Fiyat Görünsün Mü?</label>
+                            </div>
+        
+                            <div>
+                                <span class="w3-btn w3-teal" style="font-size: 12px" (click)="yeniSatirEkle(menu_gun)">
+                                    + Satır Ekle
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="gunSutun">
+                        <li *ngFor="let x of menu_gun.YemekMenuItems;let i=index" (mouseleave)="x.hovering=null" (mouseenter)="x.hovering=i">
+                            <div  style="display: flex;position: relative">
+                                <input style="display: inline-block;width: 100%" type="text" [(ngModel)]="menu_gun.YemekMenuItems[i].YemekAdi" />
+                                <input *ngIf="menu_gun.FiyatlarGorunsunMu" style="display: inline-block;width: 60px" type="text" [(ngModel)]="menu_gun.YemekMenuItems[i].Fiyat"
+                                />
+                                <span title="Sil" (click)='satirSil(menu_gun,x)'  
+                                    class="delSpan" *ngIf="x.hovering==i">
+                                    <i class="fa fa-times"></i>
+                                </span>
+                            </div>
+                            
+                        </li>
+                    </ul>
+        
+                    <div *ngIf="menu_gun.ToplamFiyatGorunsunMu">
+                        Toplam : <input type="text" [(ngModel)]="menu_gun.ToplamFiyat" />
+                    </div>
+
+
+                    <ul  class="gunSutun">
+                        <div>
+                            <div>Zeytinyağlılar</div>
+                            <span class="w3-btn w3-teal" style="font-size: 12px" (click)="yeniSatirEkleSalata(menu_gun)">
+                                + Satır Ekle
+                            </span>
+                        </div>
+                        <li *ngFor="let x of menu_gun.SalataMenuItems;let i=index" (mouseleave)="x.hovering=null" (mouseenter)="x.hovering=i">
+                            <div  style="display: flex;position: relative">
+                                <input style="display: inline-block;width: 100%" type="text" [(ngModel)]="menu_gun.SalataMenuItems[i].YemekAdi" />
+                             
+                                <span title="Sil" (click)='satirSilSalata(menu_gun,x)'  
+                                    class="delSpan" *ngIf="x.hovering==i">
+                                    <i class="fa fa-times"></i>
+                                </span>
+                            </div>
+                            
+                        </li>
+
+                   
+
+                        <div>
+                            4 Çeşit Toplam : <input type="text" [(ngModel)]="menu_gun.ToplamFiyatSalata" />
+                        </div>
+
+                    </ul>
+        
+                
+                </fieldset>
+            </ng-container>
+        </div>
+    </section>
+
+</div>
