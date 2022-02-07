@@ -24,7 +24,13 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/favicon.png",
+              "src/CNAME",
+              "src/.nojekyll",
+              "src/_config.yml",
+              "src/styles.css",
+              "src/404.html"
             ],
             "styles": [
               "src/styles.css"
@@ -36,7 +42,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "900kb",
                   "maximumError": "1mb"
                 },
                 {
