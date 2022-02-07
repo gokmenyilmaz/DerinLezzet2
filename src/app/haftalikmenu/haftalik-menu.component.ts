@@ -184,12 +184,22 @@ export class HaftalikMenuComponent {
 
     satirSil(m:YemekMenuGun,i:YemekMenuItem)
     {
-        this.removeFromArray(m,i);
+
+        let text = "Kayıt siliniyor";
+        if (confirm(text) == true) {
+            this.removeFromArray(m,i);
+        }
+          
+     
     }
 
     satirSilSalata(m:YemekMenuGun,i:YemekMenuItem)
     {
-        this.removeFromArraySalata(m,i);
+        let text = "Kayıt siliniyor";
+        if (confirm(text) == true) {
+            this.removeFromArraySalata(m,i);
+        }
+      
     }
 
     removeFromArray(m:YemekMenuGun, value:any) {

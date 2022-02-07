@@ -32,8 +32,12 @@ export class AlakartComponent implements OnInit {
     }
 
     silust(item: any) {
-        this.altMenuComponent.AlakartMenuItems = null;
-        console.log(this.altMenuComponent);
+
+        let text = "Kayıt siliniyor";
+        if (confirm(text) == true) {
+            this.altMenuComponent.AlakartMenuItems = null;
+        }
+
 
     }
 
