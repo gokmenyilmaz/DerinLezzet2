@@ -49,15 +49,13 @@ export class AlakartComponent implements OnInit {
         .subscribe (data => {
  
             if (data.length==0) {
-                    this.alakartMenus = data;
+                this.setBosAlakartMenus();
+                    
                 }
                 else {
-                    this.setBosAlakartMenus();
+                    this.alakartMenus = data;
                 }
         });
-
-            
-
     }
 
     setBosAlakartMenus() {
