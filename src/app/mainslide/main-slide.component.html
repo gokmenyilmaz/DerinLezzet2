@@ -1,14 +1,11 @@
 <div class="w3-row w3-display-container" id="anasayfa">
     <my-w3carousel id="c1" saniye="9000" buttons="evet">
         <div class="inner" body>
+
             <ul>
-                <li><img src="./assets/images/_guncel/1.jpeg" class="w3-animate-fading" />
-                </li>
-                <li><img src="./assets/images/_guncel/2.jpeg" class="w3-animate-fading" />
-                </li>
-                <li><img src="./assets/images/_guncel/3.jpeg" class="w3-animate-fading" />
-                </li>
+                <li *ngFor="let item of slideItems"><img [src]="item.src" /></li>
             </ul>
+         
         </div>
 
     </my-w3carousel>
