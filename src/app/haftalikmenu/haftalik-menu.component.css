@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'tlfont'; /*a name to be used later*/
-    src: url('/./assets/font_tl.woff'); /*URL to font*/
+    src: url('../../assets/font_tl.woff'); /*URL to font*/
+
 }
 
 article
