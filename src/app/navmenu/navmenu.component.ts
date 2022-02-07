@@ -21,9 +21,9 @@ export class NavmenuComponent {
       
     }
 
-    signInWithGoogle()
+    signInToggleWithGoogle()
     {
-        this.globalService.signInWithGoogle()
+        this.globalService.signInToggleWithGoogle()
     }
 
     openSmallMenu()

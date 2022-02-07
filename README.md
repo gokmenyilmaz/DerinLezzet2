@@ -14,4 +14,4 @@ ng build --prod
 ngh 
 ````
 
-ng add @angular/fire/compat
+npm install firebase @angular/fire --save

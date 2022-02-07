@@ -22,22 +22,21 @@ export class AppGlobalsService {
 
   constructor(private auth: AngularFireAuth) {  }
 
-  async signInWithGoogle() {
+  async signInToggleWithGoogle() {
+
+    if(this._userInfo){
+      let cev=await this.auth.signOut();
+      this._userInfo=null;
+      return;
+    }
+
     const user = await this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
 
-    console.log(user);
+    this._userInfo=user.additionalUserInfo.profile;
+    this.userPhotoURL=this._userInfo.picture;
 
-    
   }
 
   
-  signOut()
-  {
-    this.auth.signOut();
-        
-    
-        location.reload();
- 
-      
-  }
+
 }

@@ -1,6 +1,7 @@
 <div class="w3-bar  w3-black"
     style="display: flex;align-content: stretch;opacity: 0.8;flex-wrap: wrap;justify-content: center" id="myNavbar">
-    <span (click)="signInWithGoogle()" style="margin-right: auto" class="w3-bar-item w3-button w3-wide ">
+    <span  (click)="signInToggleWithGoogle()" style="margin-right: auto"
+        class="w3-bar-item w3-button w3-wide ">
         <img *ngIf="!globalService._userInfo" class="logoImg w3-hide-medium w3-hide-small"
             src="./assets/images/logo.png" />
 
@@ -10,7 +11,12 @@
             <img style="width: 50px;height: 50px" src={{globalService.userPhotoURL}} />
             <label style="width: 50px;padding-left: 10px">{{globalService._userInfo.displayName}}</label>
         </div>
+
+        <div *ngIf="globalService._userInfo" style="display: flex;width: 250px">
+            <label style="width: 50px">Çıkış</label>
+        </div>
     </span>
+
 
     <a href="#hakkimizda" class="w3-button w3-hide-small w3-hide-medium">HAKKIMIZDA</a>
     <a href="#haftalikmenu" class="w3-button w3-hide-small w3-hide-medium"><i class="fa fa-table"></i>&nbsp; HAFTALIK
