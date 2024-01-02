@@ -3,8 +3,9 @@
 # Deploy paketi
 https://www.npmjs.com/package/angular-cli-ghpages
 
+npm i --force  // bu tanımlı paketleri yükler
 
-npx ng build --prod
+npx ng build --prod       // tanımlı ng cli paketine göre derler
 
 ````
 npm i -g angular-cli-ghpages

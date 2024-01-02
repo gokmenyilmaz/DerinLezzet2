@@ -23,9 +23,10 @@
         Bu hafta için herhangi bir menü tanımı yapılmadı.
     </p>
 
-    <div *ngIf="globalService._userInfo" style="text-align: center">
+    <div *ngIf="globalService._userInfo && globalService._userRole=='admin'" style="text-align: center">
         <button class="w3-btn w3-teal" (click)="duzenle()">Düzenle</button>
         <button class="w3-btn w3-teal" (click)="kaydet()">Kaydet</button>
+
     </div>
     
     <section id="DisplayHaftalikMenu" *ngIf="!_isEditMode"  style="display: flex; flex-wrap: wrap;justify-content:space-around;align-items:stretch">
