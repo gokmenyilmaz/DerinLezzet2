@@ -6,7 +6,7 @@
         "**/*.js.map": true
     },
     "typescript.tsdk": "./node_modules/typescript/lib",
-    "editor.renderIndentGuides": true,
     "editor.fontSize": 16,
-    "vsicons.presets.angular": true
+    "vsicons.presets.angular": true,
+    "editor.guides.indentation": true
 }

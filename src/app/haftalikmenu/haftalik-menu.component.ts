@@ -71,8 +71,6 @@ export class HaftalikMenuComponent {
 
              if(this.ay_onikili<oncekiAy_onikili) {this.yil=this.yil-1;}
 
-
-
              var oncekiAyPazartesiler = this.getAyPazartesiler(this.yil, oncekiAy_onikili);
              
              this.pazartesiKey =Number(oncekiAyPazartesiler[oncekiAyPazartesiler.length-1].value);
@@ -98,30 +96,35 @@ export class HaftalikMenuComponent {
    
 
     haftalikMenuleriYukle() {
+
+        console.error("Haftalık menü yükleniyor");
         this.YemekMenuGunListe = [];
-
+    
         if (this.pazartesiKey == -1) return;
-
-        this.haftalikMenuService
-        .haftaVerileriniGetir(this.MenuAd,this.yil, this.ay_onikili, this.pazartesiKey)
-        .valueChanges()
-        .subscribe(data => {
-
-            if (data.length==0) {
-                this.setBosYemekMenuItems();
-                return;
+    
+        let sonuc = this.haftalikMenuService
+            .haftaVerileriniGetir(this.MenuAd, this.yil, this.ay_onikili, this.pazartesiKey)
+            .valueChanges();
+    
+        sonuc.subscribe(
+            data => {
+                if (data.length == 0) {
+                    this.setBosYemekMenuItems();
+                    return;
+                }
+    
+                console.log(data);
+                this.YemekMenuGunListe = data;
+                this.aktifHaftaVerisiVarmi = this.YemekMenuGunListe.filter(c => c.ToplamFiyat != 0).length > 0;
+            },
+            error => {
+              
+                console.error('Veri yükleme sırasında bir hata oluştu: ', error);
+              
             }
-
-            console.log(data)
-           
-            this.YemekMenuGunListe = data;
-            
-
-            this.aktifHaftaVerisiVarmi= this.YemekMenuGunListe.filter(c=>c.ToplamFiyat!=0).length>0;
-
-           
-        });
+        );
     }
+    
 
 
     getirPazartesiKeyGunden(d:Date):number{
