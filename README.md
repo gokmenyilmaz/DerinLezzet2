@@ -3,6 +3,9 @@
 # Deploy paketi
 https://www.npmjs.com/package/angular-cli-ghpages
 
+
+npx ng build --prod
+
 ````
 npm i -g angular-cli-ghpages
 
@@ -13,5 +16,5 @@ ng build --prod
 
 ngh 
 ````
-
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned 
 npm install firebase @angular/fire --save
